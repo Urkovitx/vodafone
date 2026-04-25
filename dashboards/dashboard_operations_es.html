@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carburos Operations — Vista Interna IoT Edge</title>
+  <meta name="google" content="notranslate">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --navy: #0a1f44;
+      --blue: #1d3a8a;
+      --red: #e60000;
+      --green: #0d6e3e;
+      --gray-bg: #f5f7fb;
+      --gray-line: #e3e8f0;
+      --gray-text: #5a6478;
+      --amber: #f4a300;
+      --teal: #0a8a8a;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, sans-serif;
+      background: var(--gray-bg);
+      color: #1a1a1a;
+      line-height: 1.45;
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto
+    }
+
+    header {
+      background: linear-gradient(135deg, #0a1f44 0%, #1d3a8a 100%);
+      color: #fff;
+      padding: 24px 28px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700
+    }
+
+    header p {
+      font-size: .92rem;
+      opacity: .88;
+      margin-top: 4px
+    }
+
+    .status-pill {
+      background: #0d6e3e;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: .82rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      animation: pulse 1.6s infinite
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .4
+      }
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 20px
+    }
+
+    .grid-5 {
+      grid-template-columns: repeat(5, 1fr)
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .grid-2 {
+      grid-template-columns: 1.4fr 1fr
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 2px 10px rgba(10, 31, 68, .05);
+      border: 1px solid var(--gray-line)
+    }
+
+    .kpi-label {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--gray-text);
+      font-weight: 600
+    }
+
+    .kpi-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 4px 0
+    }
+
+    .kpi-value.warn {
+      color: var(--red)
+    }
+
+    .kpi-value.good {
+      color: var(--green)
+    }
+
+    .kpi-sub {
+      font-size: .78rem;
+      color: var(--gray-text)
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    h2::before {
+      content: "";
+      width: 4px;
+      height: 16px;
+      background: var(--blue);
+      border-radius: 2px
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .85rem
+    }
+
+    th {
+      text-align: left;
+      padding: 8px;
+      background: var(--gray-bg);
+      color: var(--navy);
+      font-weight: 600;
+      border-bottom: 2px solid var(--gray-line);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .4px
+    }
+
+    td {
+      padding: 9px 8px;
+      border-bottom: 1px solid var(--gray-line)
+    }
+
+    tr:hover td {
+      background: #f9fbff
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 10px;
+      font-size: .72rem;
+      font-weight: 600
+    }
+
+    .pill.high {
+      background: #fde2e2;
+      color: var(--red)
+    }
+
+    .pill.med {
+      background: #fff1d6;
+      color: #a06a00
+    }
+
+    .pill.low {
+      background: #dff3e6;
+      color: var(--green)
+    }
+
+    .pill.assigned {
+      background: #e0eaff;
+      color: var(--blue)
+    }
+
+    .pill.pending {
+      background: #f0e8ff;
+      color: #6b3aa0
+    }
+
+    .pipeline {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px
+    }
+
+    .pipe-col {
+      flex: 1;
+      background: var(--gray-bg);
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 100px
+    }
+
+    .pipe-col h4 {
+      font-size: .78rem;
+      color: var(--navy);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      display: flex;
+      justify-content: space-between
+    }
+
+    .pipe-col h4 span {
+      background: #fff;
+      padding: 2px 8px;
+      border-radius: 10px;
+      color: var(--gray-text)
+    }
+
+    .pipe-card {
+      background: #fff;
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      font-size: .78rem;
+      border-left: 3px solid var(--blue)
+    }
+
+    .pipe-card.urgent {
+      border-left-color: var(--red)
+    }
+
+    .pipe-card.med {
+      border-left-color: var(--amber)
+    }
+
+    .pipe-card strong {
+      color: var(--navy);
+      display: block
+    }
+
+    .pipe-card small {
+      color: var(--gray-text);
+      display: block;
+      margin-top: 2px
+    }
+
+    .tech-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-line)
+    }
+
+    .tech-row:last-child {
+      border: none
+    }
+
+    .tech-name {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: .9rem
+    }
+
+    .tech-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--gray-bg);
+      border-radius: 4px;
+      margin: 0 12px;
+      overflow: hidden
+    }
+
+    .tech-bar div {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green) 0%, var(--amber) 70%, var(--red) 100%);
+      border-radius: 4px
+    }
+
+    .tech-load {
+      font-size: .85rem;
+      font-weight: 600;
+      min-width: 50px;
+      text-align: right;
+      color: var(--navy);
+      font-variant-numeric: tabular-nums
+    }
+
+    footer {
+      text-align: center;
+      color: var(--gray-text);
+      font-size: .8rem;
+      padding: 14px
+    }
+
+    .note {
+      font-size: .75rem;
+      color: var(--gray-text);
+      margin-top: 8px;
+      font-style: italic
+    }
+
+    @media (max-width:1100px) {
+
+      .grid-5,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media (max-width:700px) {
+
+      .grid-5,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr
+      }
+
+      .pipeline {
+        flex-direction: column
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div>
+      <h1>Carburos Operations · Vista Interna</h1>
+      <p>Gestión flota IoT Edge · 105 botellas conectadas · 10 clientes</p>
+    </div>
+    <div class="status-pill">SISTEMA OPERATIVO · 99,4% UPTIME</div>
+  </header>
+
+  <!-- KPI BAR -->
+  <div class="grid grid-5">
+    <div class="card">
+      <div class="kpi-label">Botellas activas</div>
+      <div class="kpi-value">105</div>
+      <div class="kpi-sub">de 105 desplegadas</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">Alertas críticas (24h)</div>
+      <div class="kpi-value warn">2</div>
+      <div class="kpi-sub">BTL-O2-0058 · BTL-H2-0042</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">Riesgo medio</div>
+      <div class="kpi-value">3,2</div>
+      <div class="kpi-sub">Z-score &gt; 3,5σ + drift</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">Intervenciones programadas</div>
+      <div class="kpi-value">5</div>
+      <div class="kpi-sub">esta semana · 3 técnicos</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">Ahorro YTD</div>
+      <div class="kpi-value good">23.296 €</div>
+      <div class="kpi-sub">vs. baseline 2025</div>
+    </div>
+  </div>
+
+  <!-- ALERTAS + PIPELINE -->
+  <div class="grid grid-2">
+    <div class="card">
+      <h2>Alertas activas — top 7</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Botella</th>
+            <th>Cliente</th>
+            <th>Gas</th>
+            <th>P actual</th>
+            <th>Tendencia</th>
+            <th>Riesgo</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>BTL-O2-0058</strong></td>
+            <td>Hospital Vall</td>
+            <td>Oxígeno</td>
+            <td>172,4 bar</td>
+            <td>↘ −2,1%/h</td>
+            <td><span class="pill high">15,8</span></td>
+            <td><span class="pill assigned">Marc R.</span></td>
+          </tr>
+          <tr>
+            <td><strong>BTL-H2-0042</strong></td>
+            <td>PlasmaTech</td>
+            <td>Hidrógeno</td>
+            <td>186,5 bar</td>
+            <td>↘ −1,8%/h</td>
+            <td><span class="pill high">15,7</span></td>
+            <td><span class="pill assigned">Anna F.</span></td>
+          </tr>
+          <tr>
+            <td>BTL-AR-0091</td>
+            <td>Soldaduras Pla</td>
+            <td>Argón</td>
+            <td>98,1 bar</td>
+            <td>↗ pico</td>
+            <td><span class="pill med">3,9</span></td>
+            <td><span class="pill pending">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>BTL-AR-0055</td>
+            <td>CryoLab</td>
+            <td>Argón</td>
+            <td>74,2 bar</td>
+            <td>~ deriva</td>
+            <td><span class="pill med">3,7</span></td>
+            <td><span class="pill pending">Pendiente</span></td>
+          </tr>
+          <tr>
+            <td>BTL-HE-0098</td>
+            <td>GasMed Iberia</td>
+            <td>Helio</td>
+            <td>110,4 bar</td>
+            <td>~ estable</td>
+            <td><span class="pill med">3,2</span></td>
+            <td><span class="pill assigned">Jordi L.</span></td>
+          </tr>
+          <tr>
+            <td>BTL-N2-0103</td>
+            <td>CoolFood</td>
+            <td>Nitrógeno</td>
+            <td>138,3 bar</td>
+            <td>↗ térmico</td>
+            <td><span class="pill med">3,0</span></td>
+            <td><span class="pill assigned">Marc R.</span></td>
+          </tr>
+          <tr>
+            <td>BTL-CO2-0077</td>
+            <td>BeerCraft</td>
+            <td>CO2</td>
+            <td>10,8 bar</td>
+            <td>↘ ráfaga</td>
+            <td><span class="pill med">2,9</span></td>
+            <td><span class="pill pending">Pendiente</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">Detección: z-score &gt; 3,5σ + drift de presión &gt; 0,30 (ventana 24h)</p>
+    </div>
+
+    <div class="card">
+      <h2>Carga del equipo técnico</h2>
+      <div class="tech-row">
+        <span class="tech-name">Marc R.</span>
+        <div class="tech-bar">
+          <div style="width:78%"></div>
+        </div>
+        <span class="tech-load">78%</span>
+      </div>
+      <div class="tech-row">
+        <span class="tech-name">Anna F.</span>
+        <div class="tech-bar">
+          <div style="width:65%"></div>
+        </div>
+        <span class="tech-load">65%</span>
+      </div>
+      <div class="tech-row">
+        <span class="tech-name">Jordi L.</span>
+        <div class="tech-bar">
+          <div style="width:42%"></div>
+        </div>
+        <span class="tech-load">42%</span>
+      </div>
+      <div class="tech-row">
+        <span class="tech-name">Marta P.</span>
+        <div class="tech-bar">
+          <div style="width:30%"></div>
+        </div>
+        <span class="tech-load">30%</span>
+      </div>
+
+      <h2 style="margin-top:22px">Distribución riesgo flota</h2>
+      <svg viewBox="0 0 320 160" style="width:100%;display:block" id="risk-svg"></svg>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <div class="card" style="margin-bottom:20px">
+    <h2>Pipeline de intervenciones — semana actual</h2>
+    <div class="pipeline">
+      <div class="pipe-col">
+        <h4>Detectado <span>3</span></h4>
+        <div class="pipe-card med"><strong>BTL-AR-0091</strong><small>Soldaduras Pla · pico presión</small></div>
+        <div class="pipe-card med"><strong>BTL-AR-0055</strong><small>CryoLab · deriva lenta</small></div>
+        <div class="pipe-card med"><strong>BTL-CO2-0077</strong><small>BeerCraft · ráfaga consumo</small></div>
+      </div>
+      <div class="pipe-col">
+        <h4>Asignado <span>4</span></h4>
+        <div class="pipe-card urgent"><strong>BTL-O2-0058</strong><small>→ Marc R. · hoy 11:00</small></div>
+        <div class="pipe-card urgent"><strong>BTL-H2-0042</strong><small>→ Anna F. · hoy 13:30</small></div>
+        <div class="pipe-card"><strong>BTL-HE-0098</strong><small>→ Jordi L. · martes</small></div>
+        <div class="pipe-card"><strong>BTL-N2-0103</strong><small>→ Marc R. · miércoles</small></div>
+      </div>
+      <div class="pipe-col">
+        <h4>En curso <span>2</span></h4>
+        <div class="pipe-card urgent"><strong>BTL-O2-0035</strong><small>Hospital Vall · sustitución</small></div>
+        <div class="pipe-card"><strong>BTL-AC-0017</strong><small>Talleres Riba · revisión</small></div>
+      </div>
+      <div class="pipe-col">
+        <h4>Resuelto <span>11</span></h4>
+        <div class="pipe-card"><strong>BTL-H2-0019</strong><small>Talleres Riba · OK</small></div>
+        <div class="pipe-card"><strong>BTL-O2-0044</strong><small>Hospital Vall · OK</small></div>
+        <div class="pipe-card"><strong>BTL-N2-0061</strong><small>CoolFood · OK</small></div>
+        <small style="color:var(--gray-text)">+8 más esta semana</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVENTARIO + CLIENTES -->
+  <div class="grid grid-2">
+    <div class="card">
+      <h2>Inventario por gas</h2>
+      <svg viewBox="0 0 400 280" style="width:100%;display:block" id="bars-gas"></svg>
+    </div>
+
+    <div class="card">
+      <h2>Botellas desplegadas por cliente</h2>
+      <svg viewBox="0 0 400 320" style="width:100%;display:block" id="bars-client"></svg>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Carburos Metálicos · Operations Dashboard</strong> · Vodafone Trackery · Edge AI ·
+    Última sincronización: hace 3 min · Refresco automático cada 5 min
+    <br><small style="opacity:.6">v1.1 ES · 2026-04-25</small>
+  </footer>
+
+  <script>
+    // Risk distribution
+    (function () {
+      const svg = document.getElementById('risk-svg');
+      const data = [{ lab: 'Bajo', v: 98, c: '#0d6e3e' }, { lab: 'Medio', v: 5, c: '#f4a300' }, { lab: 'Alto', v: 2, c: '#e60000' }];
+      const total = data.reduce((s, d) => s + d.v, 0);
+      let x = 20;
+      let html = '';
+      data.forEach(d => {
+        const w = (d.v / total) * 280;
+        html += `<rect x="${x}" y="40" width="${w}" height="46" fill="${d.c}" rx="3"/>`;
+        if (w > 30) html += `<text x="${x + w / 2}" y="68" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Segoe UI">${d.v}</text>`;
+        html += `<text x="${x + w / 2}" y="108" text-anchor="middle" font-size="11" fill="#5a6478" font-family="Segoe UI">${d.lab}</text>`;
+        x += w;
+      });
+      html += `<text x="160" y="22" text-anchor="middle" font-size="11" fill="#5a6478" font-family="Segoe UI">${total} botellas · estado actual</text>`;
+      svg.innerHTML = html;
+    })();
+
+    // Bars helper
+    function drawBars(svgId, data, color) {
+      const svg = document.getElementById(svgId);
+      const W = 400, H = svg.viewBox.baseVal.height || 280, padL = 110, padT = 10, padB = 20, padR = 30;
+      const innerW = W - padL - padR, innerH = H - padT - padB;
+      const max = Math.max(...data.map(d => d.value));
+      const barH = innerH / data.length - 4;
+      let html = '';
+      data.forEach((d, i) => {
+        const y = padT + i * (innerH / data.length);
+        const w = (d.value / max) * innerW;
+        html += `<text x="${padL - 8}" y="${y + barH / 2 + 4}" text-anchor="end" font-size="11" fill="#1a1a1a" font-family="Segoe UI">${d.label}</text>`;
+        html += `<rect x="${padL}" y="${y}" width="${w}" height="${barH}" fill="${color}" rx="3"/>`;
+        html += `<text x="${padL + w + 6}" y="${y + barH / 2 + 4}" font-size="11" font-weight="700" fill="#0a1f44" font-family="Segoe UI">${d.value}</text>`;
+      });
+      svg.innerHTML = html;
+    }
+    drawBars('bars-gas', [
+      { label: 'Argón', value: 19 }, { label: 'Nitrógeno', value: 19 }, { label: 'Oxígeno', value: 15 },
+      { label: 'Hidrógeno', value: 13 }, { label: 'Mezcla 95/5', value: 12 }, { label: 'Acetileno', value: 11 },
+      { label: 'Helio', value: 8 }, { label: 'CO2', value: 8 }
+    ], '#1d3a8a');
+    drawBars('bars-client', [
+      { label: 'Soldaduras Pla', value: 17 }, { label: 'CoolFood', value: 13 }, { label: 'CryoLab', value: 13 },
+      { label: 'AutoBody', value: 12 }, { label: 'Hospital Vall', value: 11 }, { label: 'Talleres Riba', value: 10 },
+      { label: 'BeerCraft', value: 9 }, { label: 'GasMed Iberia', value: 9 }, { label: 'PlasmaTech', value: 9 },
+      { label: 'IndustrialesPM', value: 2 }
+    ], '#0a8a8a');
+  </script>
+</body>
+
+</html>

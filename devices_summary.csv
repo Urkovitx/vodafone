@@ -1,0 +1,106 @@
+device_id,samples,anom_z,anom_drift,max_risk,avg_risk,last_pressure,gas,client,risk_cat
+BTL-AC-0001,336,0,0,0.0,0.0,8.71,Acetileno,Soldaduras Pla,low
+BTL-AC-0002,336,0,0,0.0,0.0,12.2,Acetileno,GasMed Iberia,low
+BTL-AC-0003,336,0,0,0.0,0.0,9.24,Acetileno,Talleres Riba,low
+BTL-AC-0004,336,0,0,0.0,0.0,7.99,Acetileno,CryoLab,low
+BTL-AC-0005,336,0,0,0.0,0.0,6.82,Acetileno,Hospital Vall,low
+BTL-AC-0006,336,0,0,0.0,0.0,12.58,Acetileno,Talleres Riba,low
+BTL-AC-0007,336,0,0,0.0,0.0,8.59,Acetileno,CoolFood,low
+BTL-AC-0008,336,0,0,0.0,0.0,9.86,Acetileno,GasMed Iberia,low
+BTL-AC-0009,336,1,0,60.0,0.17857142857142858,7.32,Acetileno,Talleres Riba,low
+BTL-AC-0010,336,0,0,0.0,0.0,8.76,Acetileno,CryoLab,low
+BTL-AC-0017,336,4,8,100.0,1.6666666666666667,16.88,Acetileno,Talleres Riba,low
+BTL-AR-0055,336,0,31,40.0,3.6904761904761907,74.18,Argón,CryoLab,low
+BTL-AR-0056,336,0,0,0.0,0.0,92.31,Argón,CoolFood,low
+BTL-AR-0057,336,0,0,0.0,0.0,144.12,Argón,Soldaduras Pla,low
+BTL-AR-0058,336,1,0,60.0,0.17857142857142858,129.51,Argón,AutoBody,low
+BTL-AR-0059,336,0,0,0.0,0.0,137.61,Argón,AutoBody,low
+BTL-AR-0060,336,0,0,0.0,0.0,147.06,Argón,Soldaduras Pla,low
+BTL-AR-0061,336,0,4,40.0,0.47619047619047616,126.59,Argón,CryoLab,low
+BTL-AR-0062,336,0,0,0.0,0.0,75.49,Argón,AutoBody,low
+BTL-AR-0063,336,0,0,0.0,0.0,70.32,Argón,Soldaduras Pla,low
+BTL-AR-0064,336,0,0,0.0,0.0,114.65,Argón,Soldaduras Pla,low
+BTL-AR-0065,336,0,17,40.0,2.0238095238095237,105.8,Argón,Soldaduras Pla,low
+BTL-AR-0066,336,0,10,40.0,1.1904761904761905,93.89,Argón,Soldaduras Pla,low
+BTL-AR-0067,336,0,0,0.0,0.0,116.76,Argón,CoolFood,low
+BTL-AR-0068,336,0,0,0.0,0.0,129.55,Argón,CoolFood,low
+BTL-AR-0069,336,0,0,0.0,0.0,152.58,Argón,Soldaduras Pla,low
+BTL-AR-0070,336,0,10,40.0,1.1904761904761905,74.09,Argón,Hospital Vall,low
+BTL-AR-0071,336,0,0,0.0,0.0,162.13,Argón,BeerCraft,low
+BTL-AR-0072,336,0,0,0.0,0.0,118.6,Argón,Soldaduras Pla,low
+BTL-AR-0091,336,3,28,100.0,3.869047619047619,98.13,Argón,Soldaduras Pla,low
+BTL-CO2-0073,336,0,0,0.0,0.0,32.1,CO2,Soldaduras Pla,low
+BTL-CO2-0074,336,0,0,0.0,0.0,20.54,CO2,CoolFood,low
+BTL-CO2-0075,336,0,0,0.0,0.0,24.2,CO2,BeerCraft,low
+BTL-CO2-0076,336,0,0,0.0,0.0,39.04,CO2,GasMed Iberia,low
+BTL-CO2-0077,336,1,23,60.0,2.9166666666666665,10.77,CO2,BeerCraft,low
+BTL-CO2-0078,336,0,0,0.0,0.0,26.51,CO2,BeerCraft,low
+BTL-CO2-0079,336,0,0,0.0,0.0,35.76,CO2,BeerCraft,low
+BTL-CO2-0080,336,0,0,0.0,0.0,26.64,CO2,BeerCraft,low
+BTL-H2-0011,336,0,0,0.0,0.0,124.95,Hidrógeno,CryoLab,low
+BTL-H2-0012,336,0,0,0.0,0.0,92.97,Hidrógeno,PlasmaTech,low
+BTL-H2-0013,336,0,0,0.0,0.0,107.57,Hidrógeno,Hospital Vall,low
+BTL-H2-0014,336,0,0,0.0,0.0,72.05,Hidrógeno,GasMed Iberia,low
+BTL-H2-0015,336,0,0,0.0,0.0,95.49,Hidrógeno,PlasmaTech,low
+BTL-H2-0016,336,0,0,0.0,0.0,96.13,Hidrógeno,Hospital Vall,low
+BTL-H2-0017,336,0,0,0.0,0.0,108.49,Hidrógeno,GasMed Iberia,low
+BTL-H2-0018,336,0,0,0.0,0.0,164.91,Hidrógeno,PlasmaTech,low
+BTL-H2-0019,336,0,24,40.0,2.857142857142857,65.05,Hidrógeno,Talleres Riba,low
+BTL-H2-0020,336,0,3,40.0,0.35714285714285715,105.2,Hidrógeno,CryoLab,low
+BTL-H2-0021,336,0,0,0.0,0.0,99.24,Hidrógeno,PlasmaTech,low
+BTL-H2-0022,336,0,0,0.0,0.0,96.33,Hidrógeno,BeerCraft,low
+BTL-H2-0042,336,3,127,100.0,15.654761904761905,186.5,Hidrógeno,PlasmaTech,medium
+BTL-HE-0093,336,1,16,60.0,2.0833333333333335,100.0,Helio,CryoLab,low
+BTL-HE-0094,336,0,0,0.0,0.0,135.59,Helio,Soldaduras Pla,low
+BTL-HE-0095,336,0,0,0.0,0.0,157.66,Helio,Talleres Riba,low
+BTL-HE-0096,336,0,0,0.0,0.0,90.45,Helio,CryoLab,low
+BTL-HE-0097,336,0,12,40.0,1.4285714285714286,63.74,Helio,AutoBody,low
+BTL-HE-0098,336,0,27,40.0,3.2142857142857144,110.44,Helio,GasMed Iberia,low
+BTL-HE-0099,336,0,0,0.0,0.0,124.7,Helio,CryoLab,low
+BTL-HE-0100,336,0,0,0.0,0.0,147.83,Helio,AutoBody,low
+BTL-MX-0081,336,0,0,0.0,0.0,131.06,Mezcla 95/5,AutoBody,low
+BTL-MX-0082,336,0,0,0.0,0.0,97.88,Mezcla 95/5,CryoLab,low
+BTL-MX-0083,336,0,1,40.0,0.11904761904761904,61.73,Mezcla 95/5,IndustrialesPM,low
+BTL-MX-0084,336,0,0,0.0,0.0,127.41,Mezcla 95/5,AutoBody,low
+BTL-MX-0085,336,0,0,0.0,0.0,151.7,Mezcla 95/5,PlasmaTech,low
+BTL-MX-0086,336,1,0,60.0,0.17857142857142858,168.97,Mezcla 95/5,CoolFood,low
+BTL-MX-0087,336,2,6,60.0,1.0714285714285714,93.29,Mezcla 95/5,AutoBody,low
+BTL-MX-0088,336,0,5,40.0,0.5952380952380952,90.72,Mezcla 95/5,GasMed Iberia,low
+BTL-MX-0089,336,0,0,0.0,0.0,121.72,Mezcla 95/5,AutoBody,low
+BTL-MX-0090,336,0,0,0.0,0.0,94.49,Mezcla 95/5,AutoBody,low
+BTL-MX-0091,336,0,0,0.0,0.0,89.72,Mezcla 95/5,CryoLab,low
+BTL-MX-0092,336,0,0,0.0,0.0,92.54,Mezcla 95/5,PlasmaTech,low
+BTL-N2-0023,336,0,0,0.0,0.0,158.85,Nitrógeno,BeerCraft,low
+BTL-N2-0024,336,0,0,0.0,0.0,139.85,Nitrógeno,CoolFood,low
+BTL-N2-0025,336,0,5,40.0,0.5952380952380952,108.04,Nitrógeno,AutoBody,low
+BTL-N2-0026,336,0,0,0.0,0.0,104.45,Nitrógeno,PlasmaTech,low
+BTL-N2-0027,336,0,0,0.0,0.0,117.11,Nitrógeno,CoolFood,low
+BTL-N2-0028,336,0,0,0.0,0.0,140.21,Nitrógeno,AutoBody,low
+BTL-N2-0029,336,0,0,0.0,0.0,106.7,Nitrógeno,GasMed Iberia,low
+BTL-N2-0030,336,0,0,0.0,0.0,151.22,Nitrógeno,CoolFood,low
+BTL-N2-0031,336,0,0,0.0,0.0,81.15,Nitrógeno,CryoLab,low
+BTL-N2-0032,336,0,0,0.0,0.0,76.92,Nitrógeno,BeerCraft,low
+BTL-N2-0033,336,0,0,0.0,0.0,127.25,Nitrógeno,CoolFood,low
+BTL-N2-0034,336,0,0,0.0,0.0,91.99,Nitrógeno,Talleres Riba,low
+BTL-N2-0035,336,0,0,0.0,0.0,72.15,Nitrógeno,Soldaduras Pla,low
+BTL-N2-0036,336,0,0,0.0,0.0,74.94,Nitrógeno,CoolFood,low
+BTL-N2-0037,336,0,0,0.0,0.0,119.8,Nitrógeno,GasMed Iberia,low
+BTL-N2-0038,336,0,1,40.0,0.11904761904761904,109.61,Nitrógeno,Talleres Riba,low
+BTL-N2-0039,336,0,0,0.0,0.0,135.3,Nitrógeno,CoolFood,low
+BTL-N2-0040,336,0,0,0.0,0.0,129.37,Nitrógeno,Soldaduras Pla,low
+BTL-N2-0103,336,1,24,100.0,3.0357142857142856,138.3,Nitrógeno,CoolFood,low
+BTL-O2-0041,336,0,0,0.0,0.0,99.75,Oxígeno,Soldaduras Pla,low
+BTL-O2-0042,336,0,0,0.0,0.0,100.14,Oxígeno,Hospital Vall,low
+BTL-O2-0043,336,0,0,0.0,0.0,72.07,Oxígeno,CryoLab,low
+BTL-O2-0044,336,0,0,0.0,0.0,129.39,Oxígeno,IndustrialesPM,low
+BTL-O2-0045,336,0,0,0.0,0.0,116.32,Oxígeno,Hospital Vall,low
+BTL-O2-0046,336,0,0,0.0,0.0,58.06,Oxígeno,Soldaduras Pla,low
+BTL-O2-0047,336,0,0,0.0,0.0,137.31,Oxígeno,Soldaduras Pla,low
+BTL-O2-0048,336,0,0,0.0,0.0,124.45,Oxígeno,Hospital Vall,low
+BTL-O2-0049,336,0,0,0.0,0.0,96.37,Oxígeno,Hospital Vall,low
+BTL-O2-0050,336,0,0,0.0,0.0,140.04,Oxígeno,Talleres Riba,low
+BTL-O2-0051,336,0,0,0.0,0.0,125.71,Oxígeno,Hospital Vall,low
+BTL-O2-0052,336,0,0,0.0,0.0,103.3,Oxígeno,Talleres Riba,low
+BTL-O2-0053,336,1,14,60.0,1.8452380952380953,67.31,Oxígeno,PlasmaTech,low
+BTL-O2-0054,336,0,0,0.0,0.0,87.59,Oxígeno,Hospital Vall,low
+BTL-O2-0058,336,1,131,100.0,15.773809523809524,172.39,Oxígeno,Hospital Vall,medium

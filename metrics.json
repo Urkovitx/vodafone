@@ -1,0 +1,113 @@
+{
+  "inventory_by_gas": {
+    "Acetileno": 11,
+    "Argón": 19,
+    "CO2": 8,
+    "Helio": 8,
+    "Hidrógeno": 13,
+    "Mezcla 95/5": 12,
+    "Nitrógeno": 19,
+    "Oxígeno": 15
+  },
+  "inventory_by_client": {
+    "Soldaduras Pla": 17,
+    "CoolFood": 13,
+    "CryoLab": 13,
+    "AutoBody": 12,
+    "Hospital Vall": 11,
+    "Talleres Riba": 10,
+    "BeerCraft": 9,
+    "GasMed Iberia": 9,
+    "PlasmaTech": 9,
+    "IndustrialesPM": 2
+  },
+  "top_risk_devices": [
+    {
+      "device_id": "BTL-O2-0058",
+      "gas": "Oxígeno",
+      "client": "Hospital Vall",
+      "last_pressure": 172.39,
+      "avg_risk": 15.773809523809524
+    },
+    {
+      "device_id": "BTL-H2-0042",
+      "gas": "Hidrógeno",
+      "client": "PlasmaTech",
+      "last_pressure": 186.5,
+      "avg_risk": 15.654761904761903
+    },
+    {
+      "device_id": "BTL-AR-0091",
+      "gas": "Argón",
+      "client": "Soldaduras Pla",
+      "last_pressure": 98.13,
+      "avg_risk": 3.869047619047619
+    },
+    {
+      "device_id": "BTL-AR-0055",
+      "gas": "Argón",
+      "client": "CryoLab",
+      "last_pressure": 74.18,
+      "avg_risk": 3.690476190476191
+    },
+    {
+      "device_id": "BTL-HE-0098",
+      "gas": "Helio",
+      "client": "GasMed Iberia",
+      "last_pressure": 110.44,
+      "avg_risk": 3.2142857142857144
+    },
+    {
+      "device_id": "BTL-N2-0103",
+      "gas": "Nitrógeno",
+      "client": "CoolFood",
+      "last_pressure": 138.3,
+      "avg_risk": 3.0357142857142856
+    },
+    {
+      "device_id": "BTL-CO2-0077",
+      "gas": "CO2",
+      "client": "BeerCraft",
+      "last_pressure": 10.77,
+      "avg_risk": 2.9166666666666665
+    },
+    {
+      "device_id": "BTL-H2-0019",
+      "gas": "Hidrógeno",
+      "client": "Talleres Riba",
+      "last_pressure": 65.05,
+      "avg_risk": 2.857142857142857
+    },
+    {
+      "device_id": "BTL-HE-0093",
+      "gas": "Helio",
+      "client": "CryoLab",
+      "last_pressure": 100.0,
+      "avg_risk": 2.083333333333333
+    },
+    {
+      "device_id": "BTL-AR-0065",
+      "gas": "Argón",
+      "client": "Soldaduras Pla",
+      "last_pressure": 105.8,
+      "avg_risk": 2.023809523809524
+    }
+  ],
+  "critical_samples": 7,
+  "unique_devices_with_critical": 5,
+  "economics": {
+    "devices": 105,
+    "clients": 10,
+    "investment_hw_eur": 15750,
+    "investment_sim_eur": 1890,
+    "investment_total_eur": 17640,
+    "savings_leaks_eur": 4300,
+    "savings_logistics_eur": 2940,
+    "savings_recovery_eur": 756,
+    "savings_stoppages_eur": 15300.0,
+    "total_saved_eur": 23296,
+    "roi_pct": 32.1,
+    "payback_months": 9.1,
+    "leaks_anticipated": 2
+  }
+}
